@@ -22,11 +22,16 @@
         <input type="text" id="last-name" />
         <label for="birthday">Gimimo data: </label>
         <input type="date" name="birthday" id="birthday" />
+        <label for="pin">Asmens kodas: </label>
+        <input type="text" id="pin" />
         <label for="education" class="age-over-14">Išsilavinimas: </label>
         <select id="education" class="age-over-14">
             <option value="N/A">Neturiu/Nėra pasirinkimo</option>
             <option value="primary-ed">Pagrindinis</option>
             <option value="secondary-ed" class="age-over-16">Vidurinis</option>
+            <option value="prof-secondary-ed" class="age-over-16">
+                profesinis
+            </option>
             <option value="college-ed" class="age-over-19">
                 Aukštasis-kolegijinis
             </option>
@@ -34,8 +39,12 @@
                 Aukštasis-universitetinis
             </option>
         </select>
+        <label for="educational-institution" class="age-over-14"
+            >Paskutinė baigta mokslo / studijų įstaiga</label
+        >
+        <input type="text" id="educational-institution" class="age-over-14" />
         <label for="phone-num">Tel. numeris: </label>
-        <input type="tel" name="phone-num" id="phone-num" />
+        <input type="tel" name="phone-num" id="phone-num" value="+370 " />
         <label for="email">El. paštas: </label>
         <input type="email" name="email" id="email" />
         <label for="address">Gyvenamoji vieta: </label>
@@ -72,7 +81,7 @@
         />
         <label for="work-field" class="age-over-15">Darbo sritis: </label>
         <select id="work-field" class="age-over-15">
-            <option value="N/A">Neturiu/Nėra pasirinkimo</option>
+            <option value="N/A">Nėra pasirinkimo</option>
             <option value="law">Teisė</option>
             <option value="public-sector">Viešasis sektorius</option>
             <option value="health">Sveikatos apsauga</option>

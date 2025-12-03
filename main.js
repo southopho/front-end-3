@@ -12,13 +12,48 @@ const calculate_age = (dob) => {
     return age_dt.getUTCFullYear() - 1970;
 };
 
+const gen_PIN = (dob, gender) => {
+    let pin = "";
+    let year = dob.getFullYear().toString();
+    let year_short = year.slice(-2);
+    let year_full = dob.getFullYear();
+    let month = dob.getMonth() + 1;
+    let day = dob.getDate();
+
+    let century;
+    if (year_full >= 1800 && year_full <= 1899) {
+        century = 19;
+    } else if (year_full >= 1900 && year_full <= 1999) {
+        century = 20;
+    } else if (year_full >= 2000 && year_full <= 2099) {
+        century = 21;
+    }
+
+    if (century === 19) {
+        pin += gender === "male" ? "1" : "2";
+    } else if (century === 20) {
+        pin += gender === "male" ? "3" : "4";
+    } else if (century === 21) {
+        pin += gender === "male" ? "5" : "6";
+    }
+
+    pin += year_short;
+    pin += month.toString().padStart(2, "0");
+    pin += day.toString().padStart(2, "0");
+
+    return pin;
+};
+
 ready(() => {
+    // Variables
+
     let elements = {
         gender: document.getElementById("gender"),
         first_name: document.getElementById("first-name"),
         second_name: document.getElementById("second-name"),
         last_name: document.getElementById("last-name"),
         birthday: document.getElementById("birthday"),
+        pin: document.getElementById("pin"),
         education: document.getElementById("education"),
         phone_num: document.getElementById("phone-num"),
         email: document.getElementById("email"),
@@ -31,6 +66,8 @@ ready(() => {
     };
 
     let GLOBAL_age = 0;
+
+    // Event listeners
 
     elements.phone_num.addEventListener("keypress", (event) => {
         let symbol = event.key;
@@ -58,12 +95,24 @@ ready(() => {
 
     elements.birthday.addEventListener("input", (event) => {
         GLOBAL_age = calculate_age(new Date(event.target.value));
+
+        update_PIN();
         update_element_visability();
+    });
+
+    elements.gender.addEventListener("input", () => {
+        update_PIN();
     });
 
     elements.marriage.addEventListener("input", () => {
         update_element_visability();
     });
+
+    elements.pin.addEventListener("input", (event) => {
+        event.target.value = event.target.value.replace(/\D/g, "").slice(0, 11);
+    });
+
+    // Functions
 
     const manage_marriage_visability = () => {
         if (GLOBAL_age < 18 || elements.marriage.value === "not-married") {
@@ -73,26 +122,29 @@ ready(() => {
         }
     };
 
+    const update_PIN = () => {
+        elements.pin.value = gen_PIN(
+            new Date(elements.birthday.value),
+            elements.gender.value
+        );
+    };
+
     const update_element_visability = () => {
-        if (Number(elements.work_experiance.value) > 0) {
-            elements.work_field.style.display = "block";
-        } else {
-            elements.work_field.style.display = "none";
-        }
         for (let i = 0; i < 30; i++) {
             document.querySelectorAll(".age-over-" + i).forEach((element) => {
                 element.style.display = GLOBAL_age > i ? "block" : "none";
             });
         }
-        manage_marriage_visability();
 
-        // if (elements.marriage.value === "married") {
-        //     console.log("married");
-        //     elements.spouce.style.display = "block";
-        // } else {
-        //     elements.spouce.style.display = "none";
-        // }
+        if (Number(elements.work_experiance.value) > 0) {
+            elements.work_field.style.display = "block";
+        } else {
+            elements.work_field.style.display = "none";
+        }
+        manage_marriage_visability();
     };
+
+    // Initial setup
 
     if (elements.birthday.value) {
         GLOBAL_age = calculate_age(new Date(elements.birthday.value));
