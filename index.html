@@ -45,8 +45,10 @@
             <option value="not-married">Nevedęs/Netekėjusi</option>
             <option value="married">Vedęs/Ištekėjusi</option>
         </select>
-        <label for="spouce" class="age-over-17">Sutuoktinis: </label>
-        <input type="spouce" id="spouce" class="age-over-17" />
+        <div id="spouce-container">
+            <label for="spouce">Sutuoktinis: </label>
+            <input type="spouce" id="spouce" />
+        </div>
         <label for="occupational-status" class="age-over-15">Užimtumas: </label>
         <select id="occupational-status" class="age-over-15">
             <option value="studying" class="age-over-16">Studijuoja</option>
@@ -65,6 +67,7 @@
             max="99"
             name="work-experiance"
             id="work-experiance"
+            value="0"
             class="age-over-15"
         />
         <label for="work-field" class="age-over-15">Darbo sritis: </label>

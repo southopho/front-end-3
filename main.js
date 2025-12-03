@@ -9,7 +9,7 @@ const ready = (fn) => {
 const calculate_age = (dob) => {
     var diff_ms = Date.now() - dob.getTime();
     var age_dt = new Date(diff_ms);
-    return Math.abs(age_dt.getUTCFullYear() - 1970);
+    return age_dt.getUTCFullYear() - 1970;
 };
 
 ready(() => {
@@ -61,19 +61,42 @@ ready(() => {
         update_element_visability();
     });
 
-    const update_element_visability = () => {
-        for (let i = 0; i < 30; i++) {
-            document.querySelectorAll(".age-over-" + i).forEach((element) => {
-                element.style.display = GLOBAL_age > i ? "block" : "none";
-            });
+    elements.marriage.addEventListener("input", () => {
+        update_element_visability();
+    });
+
+    const manage_marriage_visability = () => {
+        if (GLOBAL_age < 18 || elements.marriage.value === "not-married") {
+            document.getElementById("spouce-container").style.display = "none";
+        } else {
+            document.getElementById("spouce-container").style.display = "block";
         }
+    };
+
+    const update_element_visability = () => {
         if (Number(elements.work_experiance.value) > 0) {
             elements.work_field.style.display = "block";
         } else {
             elements.work_field.style.display = "none";
         }
+        for (let i = 0; i < 30; i++) {
+            document.querySelectorAll(".age-over-" + i).forEach((element) => {
+                element.style.display = GLOBAL_age > i ? "block" : "none";
+            });
+        }
+        manage_marriage_visability();
+
+        // if (elements.marriage.value === "married") {
+        //     console.log("married");
+        //     elements.spouce.style.display = "block";
+        // } else {
+        //     elements.spouce.style.display = "none";
+        // }
     };
 
-    GLOBAL_age = calculate_age(new Date(elements.birthday.value));
+    if (elements.birthday.value) {
+        GLOBAL_age = calculate_age(new Date(elements.birthday.value));
+    }
+
     update_element_visability();
 });
