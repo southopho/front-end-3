@@ -24,6 +24,7 @@
         <input type="date" name="birthday" id="birthday" />
         <label for="education" class="age-over-14">Išsilavinimas: </label>
         <select id="education" class="age-over-14">
+            <option value="N/A">Neturiu/Nėra pasirinkimo</option>
             <option value="primary-ed">Pagrindinis</option>
             <option value="secondary-ed" class="age-over-16">Vidurinis</option>
             <option value="college-ed" class="age-over-19">
@@ -46,6 +47,7 @@
         </select>
         <label for="spouce" class="age-over-17">Sutuoktinis: </label>
         <input type="spouce" id="spouce" class="age-over-17" />
+        <label for="occupational-status" class="age-over-15">Užimtumas: </label>
         <select id="occupational-status" class="age-over-15">
             <option value="studying" class="age-over-16">Studijuoja</option>
             <option value="working">Dirba</option>
@@ -54,9 +56,20 @@
                 Motinystės/Tėvystės atostogose
             </option>
         </select>
-        <label for="work-experiance">Darbo patirtis: </label>
-        <input type="number" name="work-experiance" id="work-experiance" />
-        <select id="work-field">
+        <label for="work-experiance" class="age-over-15"
+            >Darbo patirtis (metais):
+        </label>
+        <input
+            type="number"
+            min="0"
+            max="99"
+            name="work-experiance"
+            id="work-experiance"
+            class="age-over-15"
+        />
+        <label for="work-field" class="age-over-15">Darbo sritis: </label>
+        <select id="work-field" class="age-over-15">
+            <option value="N/A">Neturiu/Nėra pasirinkimo</option>
             <option value="law">Teisė</option>
             <option value="public-sector">Viešasis sektorius</option>
             <option value="health">Sveikatos apsauga</option>

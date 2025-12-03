@@ -6,11 +6,11 @@ const ready = (fn) => {
     }
 };
 
-function calculate_age(dob) {
+const calculate_age = (dob) => {
     var diff_ms = Date.now() - dob.getTime();
     var age_dt = new Date(diff_ms);
     return Math.abs(age_dt.getUTCFullYear() - 1970);
-}
+};
 
 ready(() => {
     let elements = {
@@ -33,7 +33,7 @@ ready(() => {
     let GLOBAL_age = 0;
 
     elements.phone_num.addEventListener("keypress", (event) => {
-        let symbol = String.fromCharCode(event.keyCode);
+        let symbol = event.key;
         let regex = /^([\+\ \d-()])?$/;
         if (!regex.test(symbol)) {
             event.preventDefault();
@@ -41,11 +41,19 @@ ready(() => {
     });
 
     elements.work_experiance.addEventListener("keypress", (event) => {
-        let symbol = String.fromCharCode(event.keyCode);
+        let symbol = event.key;
         let regex = /^(\d)?$/;
         if (!regex.test(symbol)) {
             event.preventDefault();
         }
+
+        if (event.target.value.length >= 2 && symbol !== "Backspace") {
+            event.preventDefault();
+        }
+    });
+
+    elements.work_experiance.addEventListener("input", () => {
+        update_element_visability();
     });
 
     elements.birthday.addEventListener("input", (event) => {
@@ -59,5 +67,13 @@ ready(() => {
                 element.style.display = GLOBAL_age > i ? "block" : "none";
             });
         }
+        if (Number(elements.work_experiance.value) > 0) {
+            elements.work_field.style.display = "block";
+        } else {
+            elements.work_field.style.display = "none";
+        }
     };
+
+    GLOBAL_age = calculate_age(new Date(elements.birthday.value));
+    update_element_visability();
 });
