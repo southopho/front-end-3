@@ -20,10 +20,10 @@ const gen_PIN = (dob, gender) => {
     let month = dob.getMonth() + 1;
     let day = dob.getDate();
 
-    if(isNaN(year)) {
+    if (isNaN(year)) {
         return "";
     }
-    
+
     let century;
     if (year_full >= 1800 && year_full <= 1899) {
         century = 19;
@@ -59,12 +59,29 @@ ready(() => {
         birthday: document.getElementById("birthday"),
         pin: document.getElementById("pin"),
         education: document.getElementById("education"),
+        educational_institution: document.getElementById(
+            "educational-institution",
+        ),
+        year_of_graduation: document.getElementById("year-of-graduation"),
+        qualification: document.getElementById("qualification"),
+        degree: document.getElementById("degree"),
         phone_num: document.getElementById("phone-num"),
         email: document.getElementById("email"),
         address: document.getElementById("address"),
         marriage: document.getElementById("marriage"),
         spouce: document.getElementById("spouce"),
         occupational_status: document.getElementById("occupational-status"),
+        study_level: document.getElementById("study-level"),
+        course_of_study: document.getElementById("course-of-study"),
+        expected_graduation_year: document.getElementById(
+            "expected-graduation-year",
+        ),
+        workplace: document.getElementById("workplace"),
+        position: document.getElementById("position"),
+        reason_for_unemployment: document.getElementById(
+            "reason-for-unemployment",
+        ),
+        end_of_vacation: document.getElementById("end-of-vacation"),
         work_experiance: document.getElementById("work-experiance"),
         work_field: document.getElementById("work-field"),
     };
@@ -129,7 +146,7 @@ ready(() => {
     const update_PIN = () => {
         elements.pin.value = gen_PIN(
             new Date(elements.birthday.value),
-            elements.gender.value
+            elements.gender.value,
         );
     };
 
@@ -146,6 +163,58 @@ ready(() => {
             elements.work_field.style.display = "none";
         }
         manage_marriage_visability();
+
+        if (
+            elements.education.value === "primary-ed" ||
+            elements.education.value === "secondary-ed"
+        ) {
+            document.getElementById("qualification-container").style.display =
+                "none";
+        } else {
+            document.getElementById("qualification-container").style.display =
+                "block";
+        }
+
+        if (
+            elements.education.value === "college-ed" ||
+            elements.education.value === "university-ed"
+        ) {
+            document.getElementById("degree-container").style.display = "block";
+        } else {
+            document.getElementById("degree-container").style.display = "none";
+        }
+
+        if (elements.occupational_status.value === "studying") {
+            document.getElementById("studying-container").style.display =
+                "block";
+        } else {
+            document.getElementById("studying-container").style.display =
+                "none";
+        }
+
+        if (elements.occupational_status.value === "working") {
+            document.getElementById("workplace-container").style.display =
+                "block";
+        } else {
+            document.getElementById("workplace-container").style.display =
+                "none";
+        }
+
+        if (elements.occupational_status.value === "not-working") {
+            document.getElementById("unemployment-container").style.display =
+                "block";
+        } else {
+            document.getElementById("unemployment-container").style.display =
+                "none";
+        }
+
+        if (elements.occupational_status.value === "vacation") {
+            document.getElementById("vacation-container").style.display =
+                "block";
+        } else {
+            document.getElementById("vacation-container").style.display =
+                "none";
+        }
     };
 
     // Initial setup
