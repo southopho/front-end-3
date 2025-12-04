@@ -20,6 +20,10 @@ const gen_PIN = (dob, gender) => {
     let month = dob.getMonth() + 1;
     let day = dob.getDate();
 
+    if(isNaN(year)) {
+        return "";
+    }
+    
     let century;
     if (year_full >= 1800 && year_full <= 1899) {
         century = 19;
