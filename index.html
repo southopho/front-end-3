@@ -86,46 +86,52 @@
         </div>
         <label for="occupational-status">Profesinė padėtis: </label>
         <select id="occupational-status">
-            <option value="studying">Studijuoja</option>
+            <option value="studying" class="age-over-16">Studijuoja</option>
             <option value="working" class="age-over-14">Dirba</option>
             <option value="not-working">Nedirba</option>
             <option value="vacation" class="age-over-17">
                 Motinystės/Tėvystės atostogose
             </option>
         </select>
-        <div id="studying-container">
-            <label for="study-level">Studijų lygis: </label>
-            <select id="study-level">
-                <option value="bachelor">Bakalauro laipsnis</option>
-                <option value="master">Magistro laipsnis</option>
-                <option value="doctoral">Daktaro laipsnis</option>
-            </select>
-            <label for="course-of-study">Studijų kursas: </label>
-            <input type="number" id="course-of-study" min="1" max="10" />
-            <label for="expected-graduation-year"
-                >Tikėtini baigimo metai:
-            </label>
-            <input
-                type="number"
-                id="expected-graduation-year"
-                min="2025"
-                max="2050"
-                onkeypress="return /[\d\b]/.test(event.key)"
-            />
+        <div class="age-over-16">
+            <div id="studying-container">
+                <label for="study-level">Studijų lygis: </label>
+                <select id="study-level">
+                    <option value="bachelor">Bakalauro laipsnis</option>
+                    <option value="master">Magistro laipsnis</option>
+                    <option value="doctoral">Daktaro laipsnis</option>
+                </select>
+                <label for="course-of-study">Studijų kursas: </label>
+                <input type="number" id="course-of-study" min="1" max="10" />
+                <label for="expected-graduation-year"
+                    >Tikėtini baigimo metai:
+                </label>
+                <input
+                    type="number"
+                    id="expected-graduation-year"
+                    min="2025"
+                    max="2050"
+                    onkeypress="return /[\d\b]/.test(event.key)"
+                />
+            </div>
         </div>
-        <div id="workplace-container">
-            <label for="workplace">Darbo įstaiga: </label>
-            <input type="text" id="workplace" />
-            <label for="position">Pareigos: </label>
-            <input type="text" id="position" />
+        <div class="age-over-14">
+            <div id="workplace-container">
+                <label for="workplace">Darbo įstaiga: </label>
+                <input type="text" id="workplace" />
+                <label for="position">Pareigos: </label>
+                <input type="text" id="position" />
+            </div>
         </div>
         <div id="unemployment-container">
             <label for="reason-for-unemployment">Nedarbo priežastis: </label>
             <input type="text" id="reason-for-unemployment" />
         </div>
-        <div id="vacation-container">
-            <label for="end-of-vacation">Atostogų pabaiga: </label>
-            <input type="date" id="end-of-vacation" />
+        <div class="age-over-17">
+            <div id="vacation-container">
+                <label for="end-of-vacation">Atostogų pabaiga: </label>
+                <input type="date" id="end-of-vacation" />
+            </div>
         </div>
         <label for="work-experiance" class="age-over-15"
             >Darbo patirtis (metais):
