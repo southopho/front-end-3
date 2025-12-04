@@ -133,8 +133,11 @@ ready(() => {
         event.target.value = event.target.value.replace(/\D/g, "").slice(0, 11);
     });
 
-    // Functions
+    document.addEventListener("input", () => {
+        update_element_visability();
+    });
 
+    // Functions
     const manage_marriage_visability = () => {
         if (GLOBAL_age < 18 || elements.marriage.value === "not-married") {
             document.getElementById("spouce-container").style.display = "none";
