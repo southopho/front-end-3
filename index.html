@@ -8,161 +8,188 @@
         <link rel="stylesheet" href="/style.css" />
     </head>
     <body>
-        <h1>Hello world!</h1>
-        <label for="gender">Lytis: </label>
-        <select id="gender">
-            <option value="male">Vyras</option>
-            <option value="female">Moteris</option>
-        </select>
-        <label for="first-name">Vardas: </label>
-        <input type="text" id="first-name" />
-        <label for="second-name">Antrasis vardas: </label>
-        <input type="text" id="second-name" />
-        <label for="last-name">Pavardė: </label>
-        <input type="text" id="last-name" />
-        <label for="birthday">Gimimo data: </label>
-        <input type="date" name="birthday" id="birthday" />
-        <label for="pin">Asmens kodas: </label>
-        <input type="text" id="pin" />
-        <label for="education" class="age-over-14">Išsilavinimas: </label>
-        <select id="education" class="age-over-14">
-            <option value="primary-ed">Pagrindinis</option>
-            <option value="secondary-ed" class="age-over-16">Vidurinis</option>
-            <option value="prof-secondary-ed" class="age-over-16">
-                profesinis
-            </option>
-            <option value="college-ed" class="age-over-19">
-                Aukštasis-kolegijinis
-            </option>
-            <option value="university-ed" class="age-over-19">
-                Aukštasis-universitetinis
-            </option>
-        </select>
-        <label for="educational-institution" class="age-over-14"
-            >Paskutinė baigta mokslo / studijų įstaiga</label
-        >
-        <input type="text" id="educational-institution" class="age-over-14" />
-        <label for="year-of-graduation" class="age-over-14"
-            >Baigimo metai:
-        </label>
-        <input
-            type="number"
-            id="year-of-graduation"
-            class="age-over-14"
-            min="1930"
-            max="2025"
-        />
-        <div id="qualification-container">
-            <label for="qualification" class="age-over-14"
-                >Kvalifikacija:
-            </label>
-            <input type="text" id="qualification" class="age-over-14" />
-        </div>
-        <div id="degree-container">
-            <label for="degree" class="age-over-14">Laipsnis: </label>
-            <select id="degree" class="age-over-14">
-                <option value="prof-bachelor">
-                    Profesinis bakalauro laipsnis
-                </option>
-                <option value="bachelor">Bakalauro laipsnis</option>
-                <option value="master">Magistro laipsnis</option>
-                <option value="doctoral">Doktorato laipsnis</option>
+        <div id="first-part">
+            <label for="gender">Lytis: </label>
+            <select id="gender">
+                <option value="male">Vyras</option>
+                <option value="female">Moteris</option>
             </select>
+            <label for="first-name">Vardas: </label>
+            <input type="text" id="first-name" />
+            <label for="second-name">Antrasis vardas: </label>
+            <input type="text" id="second-name" />
+            <label for="last-name">Pavardė: </label>
+            <input type="text" id="last-name" />
+            <label for="birthday">Gimimo data: </label>
+            <input type="date" name="birthday" id="birthday" />
+            <label for="pin">Asmens kodas: </label>
+            <input type="text" id="pin" />
+            <button class="next-btn">Kitas</button>
         </div>
-        <label for="phone-num">Tel. numeris: </label>
-        <input type="tel" name="phone-num" id="phone-num" value="+370 " />
-        <label for="email">El. paštas: </label>
-        <input type="email" name="email" id="email" />
-        <label for="address">Gyvenamoji vieta: </label>
-        <input type="address" id="address" />
-        <label for="marriage" class="age-over-17">Vedybinė padėtis: </label>
-        <select id="marriage" class="age-over-17">
-            <option value="not-married">Nevedęs/Netekėjusi</option>
-            <option value="married">Vedęs/Ištekėjusi</option>
-        </select>
-        <div id="spouce-container">
-            <label for="spouce">Sutuoktinis: </label>
-            <input type="spouce" id="spouce" />
-        </div>
-        <label for="occupational-status">Profesinė padėtis: </label>
-        <select id="occupational-status">
-            <option value="studying" class="age-over-16">Studijuoja</option>
-            <option value="working" class="age-over-14">Dirba</option>
-            <option value="not-working">Nedirba</option>
-            <option value="vacation" class="age-over-17">
-                Motinystės/Tėvystės atostogose
-            </option>
-        </select>
-        <div class="age-over-16">
-            <div id="studying-container">
-                <label for="study-level">Studijų lygis: </label>
-                <select id="study-level">
+        <div id="second-part">
+            <button class="prev-btn">Atgal</button>
+            <label for="education" class="age-over-14">Išsilavinimas: </label>
+            <select id="education" class="age-over-14">
+                <option value="primary-ed">Pagrindinis</option>
+                <option value="secondary-ed" class="age-over-16">
+                    Vidurinis
+                </option>
+                <option value="prof-secondary-ed" class="age-over-16">
+                    profesinis
+                </option>
+                <option value="college-ed" class="age-over-19">
+                    Aukštasis-kolegijinis
+                </option>
+                <option value="university-ed" class="age-over-19">
+                    Aukštasis-universitetinis
+                </option>
+            </select>
+            <label for="educational-institution" class="age-over-14"
+                >Paskutinė baigta mokslo / studijų įstaiga</label
+            >
+            <input
+                type="text"
+                id="educational-institution"
+                class="age-over-14"
+            />
+            <label for="year-of-graduation" class="age-over-14"
+                >Baigimo metai:
+            </label>
+            <input
+                type="number"
+                id="year-of-graduation"
+                class="age-over-14"
+                min="1930"
+                max="2025"
+            />
+            <div id="qualification-container">
+                <label for="qualification" class="age-over-14"
+                    >Kvalifikacija:
+                </label>
+                <input type="text" id="qualification" class="age-over-14" />
+            </div>
+            <div id="degree-container">
+                <label for="degree" class="age-over-14">Laipsnis: </label>
+                <select id="degree" class="age-over-14">
+                    <option value="prof-bachelor">
+                        Profesinis bakalauro laipsnis
+                    </option>
                     <option value="bachelor">Bakalauro laipsnis</option>
                     <option value="master">Magistro laipsnis</option>
-                    <option value="doctoral">Daktaro laipsnis</option>
+                    <option value="doctoral">Doktorato laipsnis</option>
                 </select>
-                <label for="course-of-study">Studijų kursas: </label>
-                <input type="number" id="course-of-study" min="1" max="10" />
-                <label for="expected-graduation-year"
-                    >Tikėtini baigimo metai:
+            </div>
+            <label for="phone-num">Tel. numeris: </label>
+            <input type="tel" name="phone-num" id="phone-num" value="+370 " />
+            <label for="email">El. paštas: </label>
+            <input type="email" name="email" id="email" />
+            <label for="address">Gyvenamoji vieta: </label>
+            <input type="address" id="address" />
+            <button class="next-btn">Kitas</button>
+        </div>
+        <div id="third-part">
+            <button class="prev-btn">Atgal</button>
+            <label for="marriage" class="age-over-17">Vedybinė padėtis: </label>
+            <select id="marriage" class="age-over-17">
+                <option value="not-married">Nevedęs/Netekėjusi</option>
+                <option value="married">Vedęs/Ištekėjusi</option>
+            </select>
+            <div id="spouce-container">
+                <label for="spouce">Sutuoktinis: </label>
+                <input type="spouce" id="spouce" />
+            </div>
+            <label for="occupational-status">Profesinė padėtis: </label>
+            <select id="occupational-status">
+                <option value="studying" class="age-over-16">Studijuoja</option>
+                <option value="working" class="age-over-14">Dirba</option>
+                <option value="not-working">Nedirba</option>
+                <option value="vacation" class="age-over-17">
+                    Motinystės/Tėvystės atostogose
+                </option>
+            </select>
+            <div class="age-over-16">
+                <div id="studying-container">
+                    <label for="study-level">Studijų lygis: </label>
+                    <select id="study-level">
+                        <option value="bachelor">Bakalauro laipsnis</option>
+                        <option value="master">Magistro laipsnis</option>
+                        <option value="doctoral">Daktaro laipsnis</option>
+                    </select>
+                    <label for="course-of-study">Studijų kursas: </label>
+                    <input
+                        type="number"
+                        id="course-of-study"
+                        min="1"
+                        max="10"
+                    />
+                    <label for="expected-graduation-year"
+                        >Tikėtini baigimo metai:
+                    </label>
+                    <input
+                        type="number"
+                        id="expected-graduation-year"
+                        min="2025"
+                        max="2050"
+                        onkeypress="return /[\d\b]/.test(event.key)"
+                    />
+                </div>
+            </div>
+            <div class="age-over-14">
+                <div id="workplace-container">
+                    <label for="workplace">Darbo įstaiga: </label>
+                    <input type="text" id="workplace" />
+                    <label for="position">Pareigos: </label>
+                    <input type="text" id="position" />
+                </div>
+            </div>
+            <div id="unemployment-container">
+                <label for="reason-for-unemployment"
+                    >Nedarbo priežastis:
                 </label>
-                <input
-                    type="number"
-                    id="expected-graduation-year"
-                    min="2025"
-                    max="2050"
-                    onkeypress="return /[\d\b]/.test(event.key)"
-                />
+                <input type="text" id="reason-for-unemployment" />
             </div>
-        </div>
-        <div class="age-over-14">
-            <div id="workplace-container">
-                <label for="workplace">Darbo įstaiga: </label>
-                <input type="text" id="workplace" />
-                <label for="position">Pareigos: </label>
-                <input type="text" id="position" />
+            <div class="age-over-17">
+                <div id="vacation-container">
+                    <label for="end-of-vacation">Atostogų pabaiga: </label>
+                    <input type="date" id="end-of-vacation" />
+                </div>
             </div>
+            <label for="work-experiance" class="age-over-15"
+                >Darbo patirtis (metais):
+            </label>
+            <input
+                type="number"
+                min="0"
+                max="99"
+                name="work-experiance"
+                id="work-experiance"
+                value="0"
+                class="age-over-15"
+                onkeypress="return /[\d\b]/.test(event.key)"
+            />
+            <label for="work-field" class="age-over-15">Darbo sritis: </label>
+            <select id="work-field" class="age-over-15">
+                <option value="N/A">Nėra pasirinkimo</option>
+                <option value="law">Teisė</option>
+                <option value="public-sector">Viešasis sektorius</option>
+                <option value="health">Sveikatos apsauga</option>
+                <option value="faramcy">Farmacija</option>
+                <option value="industry">Pramonė / Gamyba</option>
+                <option value="it">IT</option>
+                <option value="trade">Prekyba</option>
+                <option value="security">Krašto apsauga</option>
+                <option value="internal">Vidaus reikalų sistema</option>
+                <option value="service">
+                    Klientų aptarnavimas ir paslaugos
+                </option>
+                <option value="transport">Transportas</option>
+                <option value="kuture">Kultūra ir pramogos</option>
+                <option value="school">Švietimas / studijos</option>
+            </select>
+            <button class="next-btn">Baigti</button>
         </div>
-        <div id="unemployment-container">
-            <label for="reason-for-unemployment">Nedarbo priežastis: </label>
-            <input type="text" id="reason-for-unemployment" />
+        <div id="fourth-part">
+            <p id="result">Je</p>
         </div>
-        <div class="age-over-17">
-            <div id="vacation-container">
-                <label for="end-of-vacation">Atostogų pabaiga: </label>
-                <input type="date" id="end-of-vacation" />
-            </div>
-        </div>
-        <label for="work-experiance" class="age-over-15"
-            >Darbo patirtis (metais):
-        </label>
-        <input
-            type="number"
-            min="0"
-            max="99"
-            name="work-experiance"
-            id="work-experiance"
-            value="0"
-            class="age-over-15"
-            onkeypress="return /[\d\b]/.test(event.key)"
-        />
-        <label for="work-field" class="age-over-15">Darbo sritis: </label>
-        <select id="work-field" class="age-over-15">
-            <option value="N/A">Nėra pasirinkimo</option>
-            <option value="law">Teisė</option>
-            <option value="public-sector">Viešasis sektorius</option>
-            <option value="health">Sveikatos apsauga</option>
-            <option value="faramcy">Farmacija</option>
-            <option value="industry">Pramonė / Gamyba</option>
-            <option value="it">IT</option>
-            <option value="trade">Prekyba</option>
-            <option value="security">Krašto apsauga</option>
-            <option value="internal">Vidaus reikalų sistema</option>
-            <option value="service">Klientų aptarnavimas ir paslaugos</option>
-            <option value="transport">Transportas</option>
-            <option value="kuture">Kultūra ir pramogos</option>
-            <option value="school">Švietimas / studijos</option>
-        </select>
-        <button id="submit">Click me!</button>
     </body>
 </html>

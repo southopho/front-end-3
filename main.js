@@ -51,6 +51,8 @@ const gen_PIN = (dob, gender) => {
 ready(() => {
     // Variables
 
+    let current_part = 1;
+
     let elements = {
         gender: document.getElementById("gender"),
         first_name: document.getElementById("first-name"),
@@ -60,7 +62,7 @@ ready(() => {
         pin: document.getElementById("pin"),
         education: document.getElementById("education"),
         educational_institution: document.getElementById(
-            "educational-institution",
+            "educational-institution"
         ),
         year_of_graduation: document.getElementById("year-of-graduation"),
         qualification: document.getElementById("qualification"),
@@ -74,12 +76,12 @@ ready(() => {
         study_level: document.getElementById("study-level"),
         course_of_study: document.getElementById("course-of-study"),
         expected_graduation_year: document.getElementById(
-            "expected-graduation-year",
+            "expected-graduation-year"
         ),
         workplace: document.getElementById("workplace"),
         position: document.getElementById("position"),
         reason_for_unemployment: document.getElementById(
-            "reason-for-unemployment",
+            "reason-for-unemployment"
         ),
         end_of_vacation: document.getElementById("end-of-vacation"),
         work_experiance: document.getElementById("work-experiance"),
@@ -137,6 +139,22 @@ ready(() => {
         update_element_visability();
     });
 
+    const next_buttons = document.getElementsByClassName("next-btn");
+    for (let next_button of next_buttons) {
+        next_button.addEventListener("click", (event) => {
+            current_part += 1;
+            update_element_visability();
+        });
+    }
+
+    const prev_buttons = document.getElementsByClassName("prev-btn");
+    for (let prev_button of prev_buttons) {
+        prev_button.addEventListener("click", (event) => {
+            current_part -= 1;
+            update_element_visability();
+        });
+    }
+
     // Functions
     const manage_marriage_visability = () => {
         if (GLOBAL_age < 18 || elements.marriage.value === "not-married") {
@@ -149,7 +167,7 @@ ready(() => {
     const update_PIN = () => {
         elements.pin.value = gen_PIN(
             new Date(elements.birthday.value),
-            elements.gender.value,
+            elements.gender.value
         );
     };
 
@@ -218,6 +236,23 @@ ready(() => {
             document.getElementById("vacation-container").style.display =
                 "none";
         }
+
+        document.getElementById("first-part").style.display =
+            current_part === 1 ? "block" : "none";
+        document.getElementById("second-part").style.display =
+            current_part === 2 ? "block" : "none";
+        document.getElementById("third-part").style.display =
+            current_part === 3 ? "block" : "none";
+        document.getElementById("fourth-part").style.display =
+            current_part === 4 ? "block" : "none";
+
+        let form_result = {};
+        for (const [key, element] of Object.entries(elements)) {
+            form_result[key] = element.value;
+            // console.log(`${key}: ${element.value}`);
+        }
+        document.getElementById("result").innerText =
+            JSON.stringify(form_result);
     };
 
     // Initial setup
