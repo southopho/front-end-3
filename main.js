@@ -51,7 +51,7 @@ const gen_PIN = (dob, gender) => {
 ready(() => {
     // Variables
 
-    let current_part = 1;
+    let current_part = 3;
 
     let elements = {
         gender: document.getElementById("gender"),
@@ -160,7 +160,7 @@ ready(() => {
         if (GLOBAL_age < 18 || elements.marriage.value === "not-married") {
             document.getElementById("spouce-container").style.display = "none";
         } else {
-            document.getElementById("spouce-container").style.display = "block";
+            document.getElementById("spouce-container").style.display = "grid";
         }
     };
 
@@ -174,14 +174,16 @@ ready(() => {
     const update_element_visability = () => {
         for (let i = 0; i < 30; i++) {
             document.querySelectorAll(".age-over-" + i).forEach((element) => {
-                element.style.display = GLOBAL_age > i ? "block" : "none";
+                element.style.display = GLOBAL_age > i ? "grid" : "none";
             });
         }
 
         if (Number(elements.work_experiance.value) > 0) {
-            elements.work_field.style.display = "block";
+            document.getElementById("work-field-elements").style.display =
+                "grid";
         } else {
-            elements.work_field.style.display = "none";
+            document.getElementById("work-field-elements").style.display =
+                "none";
         }
         manage_marriage_visability();
 
@@ -193,21 +195,21 @@ ready(() => {
                 "none";
         } else {
             document.getElementById("qualification-container").style.display =
-                "block";
+                "grid";
         }
 
         if (
             elements.education.value === "college-ed" ||
             elements.education.value === "university-ed"
         ) {
-            document.getElementById("degree-container").style.display = "block";
+            document.getElementById("degree-container").style.display = "grid";
         } else {
             document.getElementById("degree-container").style.display = "none";
         }
 
         if (elements.occupational_status.value === "studying") {
             document.getElementById("studying-container").style.display =
-                "block";
+                "grid";
         } else {
             document.getElementById("studying-container").style.display =
                 "none";
@@ -215,7 +217,7 @@ ready(() => {
 
         if (elements.occupational_status.value === "working") {
             document.getElementById("workplace-container").style.display =
-                "block";
+                "grid";
         } else {
             document.getElementById("workplace-container").style.display =
                 "none";
@@ -223,7 +225,7 @@ ready(() => {
 
         if (elements.occupational_status.value === "not-working") {
             document.getElementById("unemployment-container").style.display =
-                "block";
+                "grid";
         } else {
             document.getElementById("unemployment-container").style.display =
                 "none";
@@ -231,20 +233,20 @@ ready(() => {
 
         if (elements.occupational_status.value === "vacation") {
             document.getElementById("vacation-container").style.display =
-                "block";
+                "grid";
         } else {
             document.getElementById("vacation-container").style.display =
                 "none";
         }
 
         document.getElementById("first-part").style.display =
-            current_part === 1 ? "block" : "none";
+            current_part === 1 ? "grid" : "none";
         document.getElementById("second-part").style.display =
-            current_part === 2 ? "block" : "none";
+            current_part === 2 ? "grid" : "none";
         document.getElementById("third-part").style.display =
-            current_part === 3 ? "block" : "none";
+            current_part === 3 ? "grid" : "none";
         document.getElementById("fourth-part").style.display =
-            current_part === 4 ? "block" : "none";
+            current_part === 4 ? "grid" : "none";
 
         let form_result = {};
         for (const [key, element] of Object.entries(elements)) {
