@@ -3,10 +3,12 @@
     grid-template-columns: 1fr 1fr;
     margin: 100px;
     padding: 10px;
+    padding-left: 20px;
     background-color: antiquewhite;
     border: 3px solid rgb(87, 87, 87);
     border-radius: 10px;
     gap: 5px;
+    column-gap: 20px;
 }
 
 .form-container label {
@@ -17,6 +19,10 @@
 
 .form-container div input,
 select {
+    width: 90%;
+}
+
+.select-element {
     width: 90%;
 }
 
