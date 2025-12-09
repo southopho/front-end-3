@@ -18,10 +18,22 @@ select {
     width: 90%;
 }
 
-h2 {
+.form-header {
     grid-column: span 2;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+h2,
+p {
+    display: inline;
+    margin: 0;
+}
+
+p {
+    float: right;
+    margin-right: 10px;
+    margin-top: 6px;
 }
 
 .prev-btn {
@@ -58,4 +70,15 @@ h2 {
 .form-container-custom div input,
 select {
     width: 90%;
+}
+
+.full-row {
+    grid-column: span 2;
+}
+
+.visual-separator {
+    grid-column: span 2;
+    height: 1px;
+    background-color: rgba(116, 116, 116, 0.685);
+    margin: 15px 0;
 }

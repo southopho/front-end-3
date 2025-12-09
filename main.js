@@ -51,7 +51,7 @@ const gen_PIN = (dob, gender) => {
 ready(() => {
     // Variables
 
-    let current_part = 3;
+    let current_part = 1;
 
     let elements = {
         gender: document.getElementById("gender"),
