@@ -17,6 +17,24 @@ const num_validator = (value, length = 0) => {
     return regex.test(value);
 };
 
+const phone_validator = (value) => {
+    let regex =
+        /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
+    return regex.test(value);
+};
+
+// Source - https://stackoverflow.com/a
+// Posted by John Rutherford, modified by community. See post 'Timeline' for change history
+// Retrieved 2025-12-09, License - CC BY-SA 4.0
+
+const validateEmail = (email) => {
+    return String(email)
+        .toLowerCase()
+        .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+};
+
 const calculate_age = (dob) => {
     var diff_ms = Date.now() - dob.getTime();
     var age_dt = new Date(diff_ms);
@@ -65,7 +83,7 @@ const gen_PIN = (dob, gender) => {
 ready(() => {
     // Variables
 
-    let current_part = 1;
+    let current_part = 3;
 
     let elements = {
         // first part
@@ -138,6 +156,8 @@ ready(() => {
 
         elements.year_of_graduation.min =
             new Date(event.target.value).getFullYear() + 12;
+
+        elements.occupational_status.value = "N/A";
 
         update_PIN();
         update_element_visability();
@@ -282,8 +302,8 @@ ready(() => {
 
     const validator = () => {
         let isValid = true;
-
-        if (current_part === 1) {
+        if (false) {
+            // if (current_part === 1) {
             if (elements.gender.value === "N/A") {
                 elements.gender.classList.add("error");
                 isValid = false;
@@ -318,7 +338,7 @@ ready(() => {
             } else {
                 elements.pin.classList.remove("error");
             }
-        } else if (current_part === 2) {
+            // } else if (current_part === 2) {
             if (elements.education.value === "N/A") {
                 elements.education.classList.add("error");
                 isValid = false;
@@ -340,7 +360,12 @@ ready(() => {
                 elements.year_of_graduation.classList.remove("error");
             }
 
-            if (GLOBAL_age > 16) {
+            if (
+                GLOBAL_age > 16 &&
+                (elements.education.value === "college-ed" ||
+                    elements.education.value === "university-ed" ||
+                    elements.education.value === "prof-secondary-ed")
+            ) {
                 if (elements.qualification.value.trim() === "") {
                     elements.qualification.classList.add("error");
                     isValid = false;
@@ -348,14 +373,38 @@ ready(() => {
                     elements.qualification.classList.remove("error");
                 }
             }
-            if (GLOBAL_age > 14) {
-                if (elements.degree.value === "N/A") {
-                    elements.degree.classList.add("error");
-                    isValid = false;
-                } else {
-                    elements.degree.classList.remove("error");
-                }
+            if (
+                GLOBAL_age > 14 &&
+                elements.degree.value === "N/A" &&
+                (elements.education.value === "college-ed" ||
+                    elements.education.value === "university-ed")
+            ) {
+                elements.degree.classList.add("error");
+                isValid = false;
+            } else {
+                elements.degree.classList.remove("error");
             }
+            if (!phone_validator(elements.phone_num.value)) {
+                elements.phone_num.classList.add("error");
+                isValid = false;
+            } else {
+                elements.phone_num.classList.remove("error");
+            }
+
+            if (validateEmail(elements.email.value) === null) {
+                elements.email.classList.add("error");
+                isValid = false;
+            } else {
+                elements.email.classList.remove("error");
+            }
+
+            if (elements.address.value.trim() === "") {
+                elements.address.classList.add("error");
+                isValid = false;
+            } else {
+                elements.address.classList.remove("error");
+            }
+        } else if (current_part === 3) {
         }
 
         return isValid;
