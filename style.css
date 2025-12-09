@@ -53,10 +53,8 @@ p {
 
 .next-btn {
     margin-top: 25px;
-
     width: 100px;
     justify-self: end;
-    /* margin-left: 300px; */
     grid-column: 2;
 }
 
@@ -71,14 +69,9 @@ p {
     gap: 5px;
 }
 
-.form-container-custom label {
-    font-weight: bold;
-}
-
 .form-container-custom div input,
 select {
     display: inline-block;
-    font-weight: bold;
     min-width: 100%;
 }
 

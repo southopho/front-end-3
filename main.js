@@ -405,6 +405,21 @@ ready(() => {
                 elements.address.classList.remove("error");
             }
         } else if (current_part === 3) {
+            if (elements.occupational_status.value === "N/A") {
+                elements.occupational_status.classList.add("error");
+                isValid = false;
+            } else {
+                elements.occupational_status.classList.remove("error");
+            }
+
+            if (GLOBAL_age >= 18) {
+                if (elements.marriage.value === "N/A") {
+                    elements.marriage.classList.add("error");
+                    isValid = false;
+                } else {
+                    elements.marriage.classList.remove("error");
+                }
+            }
         }
 
         return isValid;
