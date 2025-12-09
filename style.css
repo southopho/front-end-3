@@ -9,8 +9,10 @@
     gap: 5px;
 }
 
-.form-container div {
-    /* margin-left: 5px; */
+.form-container label {
+    display: inline-block;
+    font-weight: bold;
+    min-width: 100%;
 }
 
 .form-container div input,
@@ -63,13 +65,15 @@ p {
     gap: 5px;
 }
 
-.form-container-custom div {
-    /* margin-left: 5px; */
+.form-container-custom label {
+    font-weight: bold;
 }
 
 .form-container-custom div input,
 select {
-    width: 90%;
+    display: inline-block;
+    font-weight: bold;
+    min-width: 100%;
 }
 
 .full-row {
