@@ -6,6 +6,17 @@ const ready = (fn) => {
     }
 };
 
+const num_validator = (value, length = 0) => {
+    if (value === "") {
+        return false;
+    }
+    if (length === 0) {
+        length = value.length;
+    }
+    let regex = new RegExp("^\\d{" + length + "}$");
+    return regex.test(value);
+};
+
 const calculate_age = (dob) => {
     var diff_ms = Date.now() - dob.getTime();
     var age_dt = new Date(diff_ms);
@@ -21,6 +32,9 @@ const gen_PIN = (dob, gender) => {
     let day = dob.getDate();
 
     if (isNaN(year)) {
+        return "";
+    }
+    if (gender === "N/A") {
         return "";
     }
 
@@ -54,12 +68,14 @@ ready(() => {
     let current_part = 1;
 
     let elements = {
+        // first part
         gender: document.getElementById("gender"),
         first_name: document.getElementById("first-name"),
         second_name: document.getElementById("second-name"),
         last_name: document.getElementById("last-name"),
         birthday: document.getElementById("birthday"),
         pin: document.getElementById("pin"),
+        // second part
         education: document.getElementById("education"),
         educational_institution: document.getElementById(
             "educational-institution"
@@ -70,6 +86,7 @@ ready(() => {
         phone_num: document.getElementById("phone-num"),
         email: document.getElementById("email"),
         address: document.getElementById("address"),
+        // third part
         marriage: document.getElementById("marriage"),
         spouce: document.getElementById("spouce"),
         occupational_status: document.getElementById("occupational-status"),
@@ -119,6 +136,9 @@ ready(() => {
     elements.birthday.addEventListener("input", (event) => {
         GLOBAL_age = calculate_age(new Date(event.target.value));
 
+        elements.year_of_graduation.min =
+            new Date(event.target.value).getFullYear() + 12;
+
         update_PIN();
         update_element_visability();
     });
@@ -142,8 +162,10 @@ ready(() => {
     const next_buttons = document.getElementsByClassName("next-btn");
     for (let next_button of next_buttons) {
         next_button.addEventListener("click", (event) => {
-            current_part += 1;
-            update_element_visability();
+            if (validator()) {
+                current_part += 1;
+                update_element_visability();
+            }
         });
     }
 
@@ -189,7 +211,8 @@ ready(() => {
 
         if (
             elements.education.value === "primary-ed" ||
-            elements.education.value === "secondary-ed"
+            elements.education.value === "secondary-ed" ||
+            elements.education.value === "N/A"
         ) {
             document.getElementById("qualification-container").style.display =
                 "none";
@@ -257,7 +280,90 @@ ready(() => {
             JSON.stringify(form_result);
     };
 
+    const validator = () => {
+        let isValid = true;
+
+        if (current_part === 1) {
+            if (elements.gender.value === "N/A") {
+                elements.gender.classList.add("error");
+                isValid = false;
+            } else {
+                elements.gender.classList.remove("error");
+            }
+
+            if (elements.first_name.value.trim() === "") {
+                elements.first_name.classList.add("error");
+                isValid = false;
+            } else {
+                elements.first_name.classList.remove("error");
+            }
+
+            if (elements.last_name.value.trim() === "") {
+                elements.last_name.classList.add("error");
+                isValid = false;
+            } else {
+                elements.last_name.classList.remove("error");
+            }
+
+            if (elements.birthday.value === "") {
+                elements.birthday.classList.add("error");
+                isValid = false;
+            } else {
+                elements.birthday.classList.remove("error");
+            }
+
+            if (!num_validator(elements.pin.value, 11)) {
+                elements.pin.classList.add("error");
+                isValid = false;
+            } else {
+                elements.pin.classList.remove("error");
+            }
+        } else if (current_part === 2) {
+            if (elements.education.value === "N/A") {
+                elements.education.classList.add("error");
+                isValid = false;
+            } else {
+                elements.education.classList.remove("error");
+            }
+
+            if (elements.educational_institution.value.trim() === "") {
+                elements.educational_institution.classList.add("error");
+                isValid = false;
+            } else {
+                elements.educational_institution.classList.remove("error");
+            }
+
+            if (!num_validator(elements.year_of_graduation.value)) {
+                elements.year_of_graduation.classList.add("error");
+                isValid = false;
+            } else {
+                elements.year_of_graduation.classList.remove("error");
+            }
+
+            if (GLOBAL_age > 16) {
+                if (elements.qualification.value.trim() === "") {
+                    elements.qualification.classList.add("error");
+                    isValid = false;
+                } else {
+                    elements.qualification.classList.remove("error");
+                }
+            }
+            if (GLOBAL_age > 14) {
+                if (elements.degree.value === "N/A") {
+                    elements.degree.classList.add("error");
+                    isValid = false;
+                } else {
+                    elements.degree.classList.remove("error");
+                }
+            }
+        }
+
+        return isValid;
+    };
+
     // Initial setup
+
+    elements.expected_graduation_year.min = new Date().getFullYear();
 
     if (elements.birthday.value) {
         GLOBAL_age = calculate_age(new Date(elements.birthday.value));

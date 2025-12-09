@@ -17,6 +17,9 @@
                 <label for="gender">Lytis* </label>
                 <div class="select-element">
                     <select id="gender" class="gender">
+                        <option value="N/A" selected disabled>
+                            Pasirinkite lytį
+                        </option>
                         <option value="male">Vyras</option>
                         <option value="female">Moteris</option>
                     </select>
@@ -51,10 +54,13 @@
             </div>
             <div>
                 <label for="education" class="age-over-14"
-                    >Išsilavinimas:
+                    >Išsilavinimas*
                 </label>
                 <div class="select-element">
                     <select id="education" class="age-over-14">
+                        <option value="N/A" selected disabled>
+                            Pasirinkite išsilavinimą
+                        </option>
                         <option value="primary-ed">Pagrindinis</option>
                         <option value="secondary-ed" class="age-over-16">
                             Vidurinis
@@ -73,7 +79,7 @@
             </div>
             <div>
                 <label for="educational-institution" class="age-over-14"
-                    >Paskutinė baigta mokslo / studijų įstaiga:
+                    >Paskutinė baigta mokslo / studijų įstaiga*
                 </label>
                 <input
                     type="text"
@@ -83,7 +89,7 @@
             </div>
             <div class="age-over-14">
                 <label for="year-of-graduation" class="age-over-14"
-                    >Baigimo metai:
+                    >Baigimo metai*
                 </label>
                 <input
                     type="number"
@@ -95,13 +101,16 @@
             </div>
 
             <div id="qualification-container" class="age-over-14">
-                <label for="qualification">Kvalifikacija: </label>
+                <label for="qualification">Kvalifikacija*</label>
                 <input type="text" id="qualification" />
             </div>
             <div id="degree-container">
-                <label for="degree" class="age-over-14">Laipsnis: </label>
+                <label for="degree" class="age-over-14">Laipsnis*</label>
                 <div class="select-element">
                     <select id="degree" class="age-over-14">
+                        <option value="N/A" selected disabled>
+                            Pasirinkite laipsnį
+                        </option>
                         <option value="prof-bachelor">
                             Profesinis bakalauro laipsnis
                         </option>
@@ -113,7 +122,7 @@
             </div>
 
             <div>
-                <label for="phone-num">Tel. numeris: </label>
+                <label for="phone-num">Tel. numeris*</label>
                 <input
                     type="tel"
                     name="phone-num"
@@ -122,11 +131,11 @@
                 />
             </div>
             <div>
-                <label for="email">El. paštas: </label>
+                <label for="email">El. paštas*</label>
                 <input type="email" name="email" id="email" />
             </div>
             <div>
-                <label for="address">Gyvenamoji vieta: </label>
+                <label for="address">Gyvenamoji vieta*</label>
                 <input type="address" id="address" />
             </div>
 
