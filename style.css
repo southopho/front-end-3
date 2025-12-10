@@ -17,9 +17,12 @@
     min-width: 100%;
 }
 
-.form-container div input,
-select {
+input {
     width: 90%;
+}
+
+select {
+    min-width: 100%;
 }
 
 .select-element {
@@ -56,23 +59,6 @@ p {
     width: 100px;
     justify-self: end;
     grid-column: 2;
-}
-
-.form-container-custom {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 100px;
-    padding: 10px;
-    background-color: antiquewhite;
-    border: 3px solid rgb(87, 87, 87);
-    border-radius: 10px;
-    gap: 5px;
-}
-
-.form-container-custom div input,
-select {
-    display: inline-block;
-    min-width: 100%;
 }
 
 .full-row {
