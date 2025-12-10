@@ -423,6 +423,15 @@ ready(() => {
                 } else {
                     elements.marriage.classList.remove("error");
                 }
+
+                if (elements.marriage.value === "married") {
+                    if (elements.spouce.value.trim() === "") {
+                        elements.spouce.classList.add("error");
+                        isValid = false;
+                    } else {
+                        elements.spouce.classList.remove("error");
+                    }
+                }
             }
 
             if (elements.occupational_status.value === "N/A") {
@@ -448,7 +457,7 @@ ready(() => {
                 }
 
                 if (
-                    !num_validator(elements.expected_graduation_year.value) &&
+                    !num_validator(elements.expected_graduation_year.value) ||
                     elements.expected_graduation_year.value <
                         new Date().getFullYear()
                 ) {
