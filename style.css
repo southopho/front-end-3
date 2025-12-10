@@ -88,6 +88,20 @@ p {
 
 @media only screen and (max-width: 800px) {
     .form-container {
+        display: block;
         margin: 0px;
+        grid-template-columns: 2fr;
+    }
+
+    h2 {
+        display: block;
+        text-align: center;
+    }
+
+    p {
+        float: none;
+        text-align: center;
+        margin: 5px 0 0 0;
+        font-size: small;
     }
 }

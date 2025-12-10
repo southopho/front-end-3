@@ -23,6 +23,10 @@ const phone_validator = (value) => {
     return regex.test(value);
 };
 
+const get_current_display_style = () => {
+    return window.innerWidth < 800 ? "block" : "grid";
+};
+
 // Source - https://stackoverflow.com/a
 // Posted by John Rutherford, modified by community. See post 'Timeline' for change history
 // Retrieved 2025-12-09, License - CC BY-SA 4.0
@@ -295,13 +299,13 @@ ready(() => {
         }
 
         document.getElementById("first-part").style.display =
-            current_part === 1 ? "grid" : "none";
+            current_part === 1 ? get_current_display_style() : "none";
         document.getElementById("second-part").style.display =
-            current_part === 2 ? "grid" : "none";
+            current_part === 2 ? get_current_display_style() : "none";
         document.getElementById("third-part").style.display =
-            current_part === 3 ? "grid" : "none";
+            current_part === 3 ? get_current_display_style() : "none";
         document.getElementById("fourth-part").style.display =
-            current_part === 4 ? "grid" : "none";
+            current_part === 4 ? get_current_display_style() : "none";
 
         let form_result = {};
         for (const [key, element] of Object.entries(elements)) {
@@ -516,4 +520,20 @@ ready(() => {
     }
 
     update_element_visability();
+
+    window.onresize = () => {
+        if (current_part === 1) {
+            document.getElementById("first-part").style.display =
+                get_current_display_style();
+        } else if (current_part === 2) {
+            document.getElementById("second-part").style.display =
+                get_current_display_style();
+        } else if (current_part === 3) {
+            document.getElementById("third-part").style.display =
+                get_current_display_style();
+        } else if (current_part === 4) {
+            document.getElementById("fourth-part").style.display =
+                get_current_display_style();
+        }
+    };
 });
