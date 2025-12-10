@@ -83,7 +83,7 @@ const gen_PIN = (dob, gender) => {
 ready(() => {
     // Variables
 
-    let current_part = 3;
+    let current_part = 1;
 
     let elements = {
         // first part
@@ -147,6 +147,18 @@ ready(() => {
         }
     });
 
+    elements.course_of_study.addEventListener("keypress", (event) => {
+        let symbol = event.key;
+        let regex = /^(\d)?$/;
+        if (!regex.test(symbol)) {
+            event.preventDefault();
+        }
+
+        if (event.target.value.length >= 2 && symbol !== "Backspace") {
+            event.preventDefault();
+        }
+    });
+
     elements.work_experiance.addEventListener("input", () => {
         update_element_visability();
     });
@@ -199,10 +211,10 @@ ready(() => {
 
     // Functions
     const manage_marriage_visability = () => {
-        if (GLOBAL_age < 18 || elements.marriage.value === "not-married") {
-            document.getElementById("spouce-container").style.display = "none";
-        } else {
+        if (GLOBAL_age > 18 && elements.marriage.value === "married") {
             document.getElementById("spouce-container").style.display = "grid";
+        } else {
+            document.getElementById("spouce-container").style.display = "none";
         }
     };
 
@@ -302,8 +314,7 @@ ready(() => {
 
     const validator = () => {
         let isValid = true;
-        if (false) {
-            // if (current_part === 1) {
+        if (current_part === 1) {
             if (elements.gender.value === "N/A") {
                 elements.gender.classList.add("error");
                 isValid = false;
@@ -338,7 +349,7 @@ ready(() => {
             } else {
                 elements.pin.classList.remove("error");
             }
-            // } else if (current_part === 2) {
+        } else if (current_part === 2) {
             if (elements.education.value === "N/A") {
                 elements.education.classList.add("error");
                 isValid = false;
@@ -405,6 +416,15 @@ ready(() => {
                 elements.address.classList.remove("error");
             }
         } else if (current_part === 3) {
+            if (GLOBAL_age >= 18) {
+                if (elements.marriage.value === "N/A") {
+                    elements.marriage.classList.add("error");
+                    isValid = false;
+                } else {
+                    elements.marriage.classList.remove("error");
+                }
+            }
+
             if (elements.occupational_status.value === "N/A") {
                 elements.occupational_status.classList.add("error");
                 isValid = false;
@@ -412,12 +432,58 @@ ready(() => {
                 elements.occupational_status.classList.remove("error");
             }
 
-            if (GLOBAL_age >= 18) {
-                if (elements.marriage.value === "N/A") {
-                    elements.marriage.classList.add("error");
+            if (elements.occupational_status.value === "studying") {
+                if (elements.study_level.value === "N/A") {
+                    elements.study_level.classList.add("error");
                     isValid = false;
                 } else {
-                    elements.marriage.classList.remove("error");
+                    elements.study_level.classList.remove("error");
+                }
+
+                if (!num_validator(elements.course_of_study.value)) {
+                    elements.course_of_study.classList.add("error");
+                    isValid = false;
+                } else {
+                    elements.course_of_study.classList.remove("error");
+                }
+
+                if (
+                    !num_validator(elements.expected_graduation_year.value) &&
+                    elements.expected_graduation_year.value <
+                        new Date().getFullYear()
+                ) {
+                    elements.expected_graduation_year.classList.add("error");
+                    isValid = false;
+                } else {
+                    elements.expected_graduation_year.classList.remove("error");
+                }
+            } else if (elements.occupational_status.value === "working") {
+                if (elements.workplace.value.trim() === "") {
+                    elements.workplace.classList.add("error");
+                    isValid = false;
+                } else {
+                    elements.workplace.classList.remove("error");
+                }
+
+                if (elements.position.value.trim() === "") {
+                    elements.position.classList.add("error");
+                    isValid = false;
+                } else {
+                    elements.position.classList.remove("error");
+                }
+            } else if (elements.occupational_status.value === "not-working") {
+                if (elements.reason_for_unemployment.value.trim() === "") {
+                    elements.reason_for_unemployment.classList.add("error");
+                    isValid = false;
+                } else {
+                    elements.reason_for_unemployment.classList.remove("error");
+                }
+            } else if (elements.occupational_status.value === "vacation") {
+                if (elements.end_of_vacation.value === "") {
+                    elements.end_of_vacation.classList.add("error");
+                    isValid = false;
+                } else {
+                    elements.end_of_vacation.classList.remove("error");
                 }
             }
         }
