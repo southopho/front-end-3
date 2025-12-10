@@ -350,21 +350,27 @@ ready(() => {
                 elements.pin.classList.remove("error");
             }
         } else if (current_part === 2) {
-            if (elements.education.value === "N/A") {
+            if (elements.education.value === "N/A" && GLOBAL_age > 13) {
                 elements.education.classList.add("error");
                 isValid = false;
             } else {
                 elements.education.classList.remove("error");
             }
 
-            if (elements.educational_institution.value.trim() === "") {
+            if (
+                elements.educational_institution.value.trim() === "" &&
+                GLOBAL_age > 13
+            ) {
                 elements.educational_institution.classList.add("error");
                 isValid = false;
             } else {
                 elements.educational_institution.classList.remove("error");
             }
 
-            if (!num_validator(elements.year_of_graduation.value)) {
+            if (
+                !num_validator(elements.year_of_graduation.value) &&
+                GLOBAL_age > 13
+            ) {
                 elements.year_of_graduation.classList.add("error");
                 isValid = false;
             } else {
@@ -384,8 +390,9 @@ ready(() => {
                     elements.qualification.classList.remove("error");
                 }
             }
+
             if (
-                GLOBAL_age > 14 &&
+                GLOBAL_age > 13 &&
                 elements.degree.value === "N/A" &&
                 (elements.education.value === "college-ed" ||
                     elements.education.value === "university-ed")
