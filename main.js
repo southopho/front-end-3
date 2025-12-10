@@ -179,6 +179,18 @@ ready(() => {
         update_element_visability();
     });
 
+    elements.year_of_graduation.addEventListener("keypress", (event) => {
+        let symbol = event.key;
+        let regex = /^(\d)?$/;
+        if (!regex.test(symbol)) {
+            event.preventDefault();
+        }
+
+        if (event.target.value.length >= 4 && symbol !== "Backspace") {
+            event.preventDefault();
+        }
+    });
+
     elements.gender.addEventListener("input", () => {
         update_PIN();
     });
