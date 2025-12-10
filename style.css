@@ -79,3 +79,15 @@ p {
     box-shadow: 0 0 0 2px rgb(255, 0, 0);
     border: none;
 }
+
+@media only screen and (max-width: 1000px) {
+    .form-container {
+        margin: 50px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .form-container {
+        margin: 0px;
+    }
+}
